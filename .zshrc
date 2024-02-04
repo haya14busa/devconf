@@ -16,19 +16,24 @@ setopt appendhistory # Append history instead of overwriting it
 setopt sharehistory # Share history across terminals
 setopt incappendhistory # Immediately append to the history file, not just when the shell exits
 
+# Disable correction
+setopt nocorrectall
+
 # Enable command completion system
 autoload -Uz compinit
 compinit
 
-# Eval
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(sheldon source)"
-
 # PATH
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
+# export
+export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
+
 # source
 source "$HOME/.cargo/env"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Alias
 ## lsd - https://github.com/lsd-rs/lsd
@@ -42,7 +47,19 @@ alias lla='ls -la'
 alias lt='ls --tree'
 alias lta='ls -a --tree'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# https://github.com/sharkdp/bat?tab=readme-ov-file#highlighting---help-messages
+alias bathelp='bat --plain --language=help'
+help() {
+  "$@" --help 2>&1 | bathelp
+}
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Eval
+[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if exists sheldon; then
+  eval "$(sheldon source)"
+fi
+if exists zoxide; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
