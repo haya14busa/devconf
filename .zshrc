@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Functions
+function exists { which $1 &> /dev/null }
+
 # Improve history
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -20,16 +23,6 @@ setopt correct_all
 autoload -Uz compinit
 compinit
 
-# Alias
-## lsd - https://github.com/lsd-rs/lsd
-alias ls='lsd'
-alias l='ls -l'
-alias ll='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-alias lt='ls --tree'
-alias lta='ls -a --tree'
-
 # Eval
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(sheldon source)"
@@ -38,6 +31,18 @@ eval "$(sheldon source)"
 
 # source
 source "$HOME/.cargo/env"
+
+# Alias
+## lsd - https://github.com/lsd-rs/lsd
+if exists lsd; then
+  alias ls='lsd'
+fi
+alias l='ls -l'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+alias lta='ls -a --tree'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
