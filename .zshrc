@@ -55,6 +55,18 @@ help() {
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
+# FZF
+function ghq-fzf() {
+  local src=$(ghq list | fzf --preview "lsd -a --icon=always $(ghq root)/{}")
+  if [ -n "$src" ]; then
+    BUFFER="cd $(ghq root)/$src"
+    zle accept-line
+  fi
+  zle -R -c
+}
+zle -N ghq-fzf
+bindkey '^o' ghq-fzf
+
 # Eval
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 if exists sheldon; then
