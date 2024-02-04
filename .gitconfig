@@ -15,6 +15,7 @@
 	ci = commit
 	ad = add
 	cam = commit --amend
+	dc = diff --cached
 [include]
 	path = ~/.gitconfig.local
 [url "https://"]
