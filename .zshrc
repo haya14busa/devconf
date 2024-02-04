@@ -16,9 +16,6 @@ setopt appendhistory # Append history instead of overwriting it
 setopt sharehistory # Share history across terminals
 setopt incappendhistory # Immediately append to the history file, not just when the shell exits
 
-# Command auto-correction
-setopt correct_all
-
 # Enable command completion system
 autoload -Uz compinit
 compinit
@@ -28,6 +25,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(sheldon source)"
 
 # PATH
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
 # source
 source "$HOME/.cargo/env"
