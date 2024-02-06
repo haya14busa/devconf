@@ -23,3 +23,5 @@ packages:
 - name: orf/gping@gping-v1.16.0
 - name: dalance/procs@v0.14.4
 - name: ajeetdsouza/zoxide@v0.9.2
+- name: reviewdog/reviewdog@v0.17.0
+- name: rossmacarthur/sheldon@0.7.4
