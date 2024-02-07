@@ -75,3 +75,6 @@ fi
 if exists zoxide; then
   eval "$(zoxide init zsh --cmd cd)"
 fi
+
+# Load local .zshrc
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
