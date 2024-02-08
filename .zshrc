@@ -16,8 +16,8 @@ setopt appendhistory # Append history instead of overwriting it
 setopt sharehistory # Share history across terminals
 setopt incappendhistory # Immediately append to the history file, not just when the shell exits
 
-# Disable correction
-setopt nocorrectall
+setopt nocorrectall # Disable correction
+setopt interactive_comments # Allow `#` comment
 
 # Enable command completion system
 autoload -Uz compinit
