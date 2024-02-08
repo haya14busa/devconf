@@ -18,6 +18,7 @@ setopt incappendhistory # Immediately append to the history file, not just when 
 
 setopt nocorrectall # Disable correction
 setopt interactive_comments # Allow `#` comment
+bindkey -e # Emacs-style keybinding
 
 # Enable command completion system
 autoload -Uz compinit
@@ -25,6 +26,9 @@ compinit
 
 # PATH
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+if exists go; then
+  export PATH="$(go env GOPATH)/bin:$PATH"
+fi
 
 # export
 export EDITOR=$(which vim)
@@ -58,7 +62,7 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # FZF
 function ghq-fzf() {
-  local src=$(ghq list | fzf --preview "lsd -a --icon=always $(ghq root)/{}")
+  local src=$(ghq list | fzf --preview "lsd -a --color=always --icon=always $(ghq root)/{}")
   if [ -n "$src" ]; then
     BUFFER="cd $(ghq root)/$src"
     zle accept-line
