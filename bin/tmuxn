@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Default session name
+default_session_name="work"
+
+# Check if a session name is provided as an argument
+session_name="$1"
+
+if [[ -z "$session_name" ]]; then
+  # If no session name is provided, check for existing sessions
+  all_sessions=$(tmux list-sessions -F "#S" 2>/dev/null | sed 's/-[0-9]*$//' | sort -u)
+  if [[ -n "$all_sessions" ]]; then
+    selected_session=$(echo "$all_sessions" | fzf --height=10 --select-1 --exit-0 --prompt="Select a tmux session: ")
+
+    if [[ -n "$selected_session" ]]; then
+      tmux new -t "$selected_session"
+    else
+      echo "No session selected. Exiting."
+      exit 0
+    fi
+  else
+    # If no sessions exist, create a new session with the default name
+    echo "No existing tmux sessions found. Creating a new session with the default name."
+    tmux new-session -s "$default_session_name"
+  fi
+else
+  # Check for existing tmux sessions with the given session name
+  tmux_sessions=$(tmux list-sessions -F "#S" 2>/dev/null | grep "^$session_name$")
+
+  if [[ -n "$tmux_sessions" ]]; then
+    # Attach to the specified session if it exists
+    tmux new -t "$session_name"
+  else
+    # If the session does not exist, create a new one with the given name
+    echo "Session '$session_name' does not exist. Creating a new session."
+    tmux new-session -s "$session_name"
+  fi
+fi
+
