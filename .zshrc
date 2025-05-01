@@ -25,11 +25,14 @@ autoload -Uz compinit
 compinit
 
 # PATH
-export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 export PATH="${HOME}/bin:$PATH"
 if exists go; then
   export PATH="$(go env GOPATH)/bin:$PATH"
 fi
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="${HOME}/go/bin:$PATH"
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
 # export
 export EDITOR=$(which vim)
@@ -58,7 +61,7 @@ alias bathelp='bat --plain --language=help'
 help() {
   "$@" --help 2>&1 | bathelp
 }
-alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+# alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # FZF
@@ -84,10 +87,7 @@ fi
 
 # Load local .zshrc
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f ~/.zshrc.key ] && source ~/.zshrc.key
 
 # bun completions
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"

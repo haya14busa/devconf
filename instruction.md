@@ -8,6 +8,7 @@ ln -s ~/devconf/.p10k.zsh ~/
 ln -s ~/devconf/.config/aquaproj-aqua ~/.config/
 ln -s ~/devconf/.config/lsd ~/.config/
 ln -s ~/devconf/.config/sheldon ~/.config/
+ln -s ~/devconf/.config/ghostty ~/.config/
 ```
 
 # Tmux

@@ -45,9 +45,19 @@
 	showuntrackedfiles = all
 [commit]
 	verbose = true
+	gpgsign = true
 [status]
 	showuntrackedfiles = all
 [http]
 	cookiefile = /home/haya14busa/.gitcookies
 [init]
 	defaultBranch = main
+[safe]
+	directory = /Users/haya14busa/src/github.com/haya14busa/github-actions-supply-chain-attach-tag-rewrite-detection
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	defaultKeyCommand = ssh-add -L
+	allowedSignersFile = /Users/haya14busa/.ssh/allowed_signers
+[tag]
+	gpgSign = true
