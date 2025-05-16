@@ -34,14 +34,14 @@
 # resize-overlay-duration = 4s 200ms
 
 theme = CutiePro
-background-opacity = 0.8
+background-opacity = 0.85
 # background-blur = true
 
 # Maximizing window
 window-height=510
 window-width=1640
 
-title=" "
+# title=" "
 window-subtitle = false
 macos-titlebar-proxy-icon = hidden
 
