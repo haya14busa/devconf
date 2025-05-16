@@ -11,6 +11,13 @@ ln -s ~/devconf/.config/sheldon ~/.config/
 ln -s ~/devconf/.config/ghostty ~/.config/
 ```
 
+### Mac OS
+
+```
+ln -s ~/devconf/.config/yabai ~/.config/
+ln -s ~/devconf/.config/skhd ~/.config/
+```
+
 # Tmux
 
 ## tpm
