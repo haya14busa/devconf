@@ -5,7 +5,7 @@ trap 'rm -rf -- "$TMPDIR"' EXIT HUP INT TERM
 
 selected=$(yabai -m query --windows | jq -r '.[] | "\(.id)\tspace=\(.space)\t\(.app)\t\(.title)"' |
            column -t -s $'\t' |
-           fzf --header="ID SCREEN APP TITLE" --layout=reverse --preview-window=down:80% --preview='(){
+           fzf --header="ID SCREEN APP TITLE" --layout=reverse --preview-window=down:70% --preview='(){
              window_id={1}
              screencapture -x -l $window_id '$TMPDIR'/$window_id.png
              dim=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}
