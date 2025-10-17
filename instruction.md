@@ -1,6 +1,7 @@
 # Link config
 
 ```
+mkdir -p ~/.config
 ln -s ~/devconf/.zshrc ~/
 ln -s ~/devconf/.tmux.conf ~/
 ln -s ~/devconf/.gitconfig ~/

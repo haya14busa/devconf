@@ -40,3 +40,7 @@ packages:
 - name: sxyazi/yazi@v25.4.8
 - name: zellij-org/zellij@v0.42.2
 - name: theryangeary/choose@v1.3.6
+- name: golang/go@go1.25.2
+- name: nodejs/node@v24.9.0
+- name: pnpm/pnpm@v10.18.2
+- name: oven-sh/bun@bun-v1.2.23
